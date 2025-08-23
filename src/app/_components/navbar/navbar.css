@@ -1,0 +1,17 @@
+.navbar {
+  background-color: #f8f9fa;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-logo {
+  height: 40px;
+}
+
+.active {
+  color: #007bff;
+}
+
+.nav-link.active {
+  color: #007bff;
+}
