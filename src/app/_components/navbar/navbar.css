@@ -6,9 +6,8 @@
   padding-left: 12px;
 }
 
-.navbar-logo {
-  height: 20px;
-  width: 20px;
+.navbar-logo img {
+  height: 40px;
 }
 
 .active {
