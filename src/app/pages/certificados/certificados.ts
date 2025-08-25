@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SecondaryButton } from '../../_components/secondary-button/secondary-button';
 import { RouterLink } from '@angular/router';
-import { ItemCertificado } from '../../_components/item-certificado/item-certificado';
 import { CertificadoService } from '../../_services/certificado.service';
 import { Certificado } from '../../interfaces/certificado';
+import { ItemCertificado } from '../../_components/item-certificado/item-certificado';
 
 @Component({
   selector: 'app-certificados',
-  imports: [ItemCertificado, SecondaryButton, RouterLink],
+  imports: [SecondaryButton, RouterLink, ItemCertificado],
   templateUrl: './certificados.html',
   styleUrl: './certificados.css',
 })

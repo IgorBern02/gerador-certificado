@@ -4,16 +4,21 @@
       <i class="ph ph-arrow-left"></i>
       <p class="m-0">Voltar</p>
     </div>
-    <app-secondary-button></app-secondary-button>
+    <app-secondary-button
+      (click)="downloadCertificado()"
+      phClass="ph ph-download-simple"
+      textoBotao="Download"
+    ></app-secondary-button>
   </div>
 
+  @if (certificado) {
   <div class="certificado d-flex justify-content-center align-items-center">
     <img
       class="icone-medalha"
       src="certificate/Certificate_Ribbon.png"
       alt="icone de certificado"
     />
-    <div class="conteudo-certificado">
+    <div #certificadoContainer class="conteudo-certificado">
       <img class="img-assinatura" src="certificate/Certificate_Signature.svg" alt="assinatura" />">
       <div class="info-certificado d-flex flex-column align-items-center">
         <div class="titulo-subtitulo-certificado">
@@ -21,14 +26,16 @@
           <p>Este certificado comprova que</p>
         </div>
 
-        <p class="nome-aluno">Ana Silva</p>
+        <p class="nome-aluno">{{ certificado.nome }}</p>
 
         <div>
           <p class="lista-atividade-titulo">Concluiu com sucesso as seguintes atividades:</p>
-          <p class="lista-atividade">Introdução ao angular</p>
+          <p class="lista-atividade">{{ certificado.atividades.join(', ') }}</p>
         </div>
       </div>
-      <p class="data-emissao">Emitido em 25/05/2025</p>
     </div>
+    <p class="data-emissao">Emitido em {{ certificado.dataEmissao }}</p>
   </div>
+
+  }
 </div>
