@@ -1,59 +1,68 @@
-# GeradorCertificado
+# Gerador Certificado
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.0.
+  Um aplicativo Angular que permite gerar certificados personalizados (imagem) a partir de um template.
 
-## Development server
+##  Funcionalidades
 
-To start a local development server, run:
+- Geração de certificado em formato imagem via html2canvas
+- Upload/customização de dados (nome, curso, data, etc.)
+- Visualização e download direto no navegador
+- Suporte para deploy contínuo via Netlify
 
-```bash
-ng serve
-```
+##  Tecnologias usadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 20.2.0
+- TypeScript
+- html2canvas
+- Netlify (configuração no `netlify.toml`)
+- Bootstrap
 
-## Code scaffolding
+##  Como rodar localmente
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/IgorBern02/gerador-certificado.git
+   cd gerador-certificado
+   ```
 
-```bash
-ng generate component component-name
-```
+2. Instale as dependências:
+    ```bash
+      npm install
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+3. Rode o servidor de desenvolvimento:
+    ```bash
+      ng serve
+   ```
 
-```bash
-ng generate --help
-```
+4. Acesse em http://localhost:4200/.
 
-## Building
+Build para produção
+  ```bash
+      ng build --prod
+   ```
+Os arquivos compilados ficarão em dist/.
 
-To build the project run:
+Deploy
 
-```bash
-ng build
-```
+- Instruções para deploy (por exemplo, via Netlify):
+- Criar site no Netlify conectado ao GitHub
+- Netlify vai usar ng build --prod
+- Repositório já contém netlify.toml com configurações
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Próximos passos
 
-## Running unit tests
+- Adicionar suporte a [exemplo]
+- Melhorar templates de certificado
+- Internacionalização / múltiplos idiomas
+- Melhoria visual, responsividade, testes automatizados
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Como contribuir
 
-```bash
-ng test
-```
+1. Faça um fork
+2. Crie uma branch para sua feature ou bugfix (git checkout -b feature/x)
+3. Commit suas mudanças (git commit -m "Descrição da mudança")
+4. Push para sua branch (git push origin feature/x)
+5. Abra um Pull Request
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
