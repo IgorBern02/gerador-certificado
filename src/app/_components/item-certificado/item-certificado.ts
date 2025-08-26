@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { SecondaryButton } from '../secondary-button/secondary-button';
 import { Router } from '@angular/router';
+import { RemoveButton } from '../remove-button/remove-button';
 
 @Component({
   selector: 'app-item-certificado',
-  imports: [SecondaryButton],
+  imports: [SecondaryButton, RemoveButton, RemoveButton],
   templateUrl: './item-certificado.html',
   styleUrl: './item-certificado.css',
 })
