@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-.menu-certoificado {
+.menu-certificado {
   max-width: 800px;
 }
 
@@ -25,9 +25,10 @@
 
 .certificado {
   position: relative;
+  flex-direction: column;
   margin-top: 32px;
   background-image: url('../../../../public/certificate/Certificate_BG.png');
-  width: 800px;
+  max-width: 800px;
   height: 550px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -37,10 +38,16 @@
 
 .conteudo-certificado {
   position: relative;
-  width: 720px;
+  max-width: 720px;
   height: 470px;
   background-color: #fff;
   border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .conteudo-certificado {
+    height: auto;
+  }
 }
 
 .conteudo-certificado p {

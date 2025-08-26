@@ -30,3 +30,38 @@
 .nav-item i {
   font-size: 20px;
 }
+
+/* Ícone hamburguer padrão do bootstrap */
+.navbar-toggler {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-menu-icon {
+  font-size: 30px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    display: none;
+  }
+  .navbar-collapse.show {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav-item {
+    margin-left: 0 !important;
+    margin-bottom: 10px;
+  }
+}

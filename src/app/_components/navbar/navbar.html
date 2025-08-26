@@ -3,7 +3,22 @@
     <a routerLink="/" class="navbar-logo" href="#">
       <img src="navbar/logo.svg" alt="logo" />
     </a>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleMenu()"
+      [ngClass]="{ open: isMenuOpen }"
+      aria-controls="navbarNav"
+      aria-expanded="isMenuOpen"
+      aria-label="Toggle navigation"
+    >
+      <i [ngClass]="isMenuOpen ? 'ph ph-x' : 'ph ph-list'" class="navbar-menu-icon"></i>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNav"
+      [ngClass]="{ show: isMenuOpen }"
+    >
       <ul class="navbar-nav">
         <li class="nav-item d-flex align-items-center">
           <i class="ph ph-medal" [ngClass]="{ active: rlaListaCertificado.isActive }"></i>

@@ -12,14 +12,14 @@
   </div>
 
   @if (certificado) {
-  <div class="certificado d-flex justify-content-center align-items-center">
+  <div class="certificado w-100 d-flex justify-content-center align-items-center">
     <img
       class="icone-medalha"
       src="certificate/Certificate_Ribbon.png"
       alt="icone de certificado"
     />
-    <div #certificadoContainer class="conteudo-certificado">
-      <img class="img-assinatura" src="certificate/Certificate_Signature.svg" alt="assinatura" />">
+    <div #certificadoContainer class="conteudo-certificado w-100">
+      <img class="img-assinatura" src="certificate/Certificate_Signature.svg" alt="assinatura" />
       <div class="info-certificado d-flex flex-column align-items-center">
         <div class="titulo-subtitulo-certificado">
           <h1 class="titulo-certificado">Certificado de Conclusão</h1>
@@ -33,8 +33,8 @@
           <p class="lista-atividade">{{ certificado.atividades.join(', ') }}</p>
         </div>
       </div>
+      <p class="data-emissao">Emitido em {{ certificado.dataEmissao }}</p>
     </div>
-    <p class="data-emissao">Emitido em {{ certificado.dataEmissao }}</p>
   </div>
 
   }
