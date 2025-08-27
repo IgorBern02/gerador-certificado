@@ -1,83 +1,74 @@
 import { Component, ViewChild } from '@angular/core';
-import { SecondaryButton } from '../../_components/secondary-button/secondary-button';
 import { PrimaryButton } from '../../_components/primary-button/primary-button';
+import { SecondaryButton } from '../../_components/secondary-button/secondary-button';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Certificado } from '../../interfaces/certificado';
 import { CertificadoService } from '../../_services/certificado.service';
-import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-certificado-form',
-  imports: [SecondaryButton, PrimaryButton, FormsModule, CommonModule],
+  imports: [PrimaryButton, SecondaryButton, FormsModule, CommonModule],
   templateUrl: './certificado-form.html',
   styleUrl: './certificado-form.css',
 })
 export class CertificadoForm {
-  constructor(private certificadoService: CertificadoService, private route: Router) {}
   @ViewChild('form') form!: NgForm;
 
   certificado: Certificado = {
-    id: '',
-    atividades: [],
     nome: '',
-    dataEmissao: '',
+    curso: [],
+    data: '',
   };
-  atividade: string = '';
+
+  curso: string = '';
+
+  constructor(private certificadoService: CertificadoService, private route: Router) {}
 
   campoInvalido(control: NgModel) {
     return control.invalid && control.touched;
   }
 
   formValido() {
-    return this.certificado.atividades.length > 0 && this.certificado.nome.length > 0;
-  }
-
-  adicionarAtividade() {
-    if (this.atividade.length == 0) {
-      return;
-    }
-    this.certificado.atividades.push(this.atividade);
-    this.atividade = '';
-  }
-
-  removerAtividade(index: number) {
-    this.certificado.atividades.splice(index, 1);
+    return this.certificado.nome.trim().length > 0 && this.certificado.curso.length > 0;
   }
 
   submit() {
-    if (!this.formValido()) {
-      return;
-    }
+    if (!this.formValido()) return;
 
-    this.certificado.dataEmissao = this.dataAtual();
-    this.certificado.id = uuidv4();
-    this.certificadoService.adicionarCertificado(this.certificado);
+    this.certificado.data = this.dataAtual();
 
-    this.route.navigate(['certificados', this.certificado.id]);
+    this.certificadoService.criarCertificado(this.certificado).subscribe({
+      next: (res) => {
+        console.log('✅ Certificado criado:', res);
+        this.route.navigate(['certificados']);
+      },
+      error: (err) => {
+        console.error('❌ Erro ao criar certificado:', err);
+      },
+    });
+  }
 
-    // this.certificado = this.estadoInicialCertificado();
-    // this.form.resetForm();
+  adicionarAtividade() {
+    if (this.curso.trim().length === 0) return;
+    this.certificado.curso.push(this.curso.trim());
+    this.curso = '';
   }
 
   dataAtual() {
-    const dataAtual = new Date();
-    const dia = String(dataAtual.getDate()).padStart(2, '0');
-    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
-    const ano = dataAtual.getFullYear();
-
-    const dataFormatada = `${dia}/${mes}/${ano}`;
-
-    return dataFormatada;
+    const data = new Date();
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
   }
 
   estadoInicialCertificado(): Certificado {
     return {
-      id: '',
-      atividades: [],
       nome: '',
-      dataEmissao: '',
+      curso: [],
+      data: '',
     };
   }
 }

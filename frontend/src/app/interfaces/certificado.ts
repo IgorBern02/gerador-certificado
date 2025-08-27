@@ -1,6 +1,6 @@
 export interface Certificado {
-  id: string;
+  _id?: string; // gerado pelo Mongo
   nome: string;
-  atividades: String[];
-  dataEmissao: string;
+  curso: string[];
+  data: string; // data de emissão
 }

@@ -1,12 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SecondaryButton } from '../../_components/secondary-button/secondary-button';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CertificadoService } from '../../_services/certificado.service';
 import { Certificado } from '../../interfaces/certificado';
 import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-certificado',
-  imports: [SecondaryButton, RouterLink],
+  imports: [SecondaryButton],
   templateUrl: './certificado.html',
   styleUrl: './certificado.css',
 })
@@ -21,19 +22,23 @@ export class CertificadoComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      this.certificado = this.certificadoService.certificados.find((item) => item.id == this.id);
+      if (this.id) {
+        // Buscar do backend pelo _id
+        this.certificadoService.getCertificadoPorId(this.id).subscribe({
+          next: (res) => (this.certificado = res),
+          error: (err) => console.error('❌ Erro ao carregar certificado:', err),
+        });
+      }
     });
   }
 
   downloadCertificado() {
-    if (this.certificado == undefined) {
-      return;
-    }
+    if (!this.certificado || !this.certificadoElement) return;
 
     html2canvas(this.certificadoElement.nativeElement, { scale: 2 }).then((canvas) => {
       const link = document.createElement('a');
       link.href = canvas.toDataURL('image/png');
-      link.download = 'certificado_' + this.certificado?.nome.replaceAll(' ', '_') + '.png';
+      link.download = 'certificado_' + this.certificado!.nome.replaceAll(' ', '_') + '.png';
       link.click();
     });
   }

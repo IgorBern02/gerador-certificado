@@ -2,13 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Certificado {
-  _id?: string;
-  nome: string;
-  curso: string;
-  data: string;
-}
+import { Certificado } from '../interfaces/certificado';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +14,10 @@ export class CertificadoService {
 
   getCertificados(): Observable<Certificado[]> {
     return this.http.get<Certificado[]>(this.apiUrl);
+  }
+
+  getCertificadoPorId(id: string): Observable<Certificado> {
+    return this.http.get<Certificado>(`${this.apiUrl}/${id}`);
   }
 
   criarCertificado(certificado: Certificado): Observable<Certificado> {

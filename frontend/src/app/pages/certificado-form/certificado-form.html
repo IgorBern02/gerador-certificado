@@ -6,13 +6,16 @@
 
   <div class="custom-card w-100">
     <h2 class="card-title">Novo certificado</h2>
+
+    <!-- Nome do aluno -->
     <div class="mb-3 custom-input-group">
       <label
         [ngClass]="{ 'text-danger-label': campoInvalido(nomeRef) }"
         for="nome"
         class="form-label"
-        >Nome</label
       >
+        Nome
+      </label>
       <input
         [(ngModel)]="certificado.nome"
         name="nome"
@@ -23,51 +26,66 @@
         class="form-control custom-input"
         placeholder="Nome do aluno"
       />
-      @if (campoInvalido(nomeRef) ) {
+      @if (campoInvalido(nomeRef)) {
       <div class="error-message d-flex align-items-center">
         <i class="ph ph-warning-circle"></i>
         <p class="m-0">Nome do aluno é obrigatório</p>
       </div>
       }
     </div>
+
+    <!-- Nome do curso -->
     <div class="mb-3 d-flex align-items-end custom-input-group">
       <div class="flex-grow-1 me-2">
-        <label for="atividade" class="form-label">Atividade</label>
+        <label
+          [ngClass]="{ 'text-danger-label': campoInvalido(cursoRef) }"
+          for="curso"
+          class="form-label"
+        >
+          Curso
+        </label>
         <input
-          [(ngModel)]="atividade"
-          name="atividade"
-          #atividadeRef="ngModel"
-          maxlength="50"
+          [(ngModel)]="certificado.curso"
+          name="curso"
+          #cursoRef="ngModel"
           required
-          id="atividade"
+          id="curso"
           type="text"
           class="form-control custom-input"
-          placeholder="Atividades exercidas"
+          placeholder="Nome do curso"
         />
       </div>
       <app-secondary-button
         (click)="adicionarAtividade()"
-        [disabled]="!atividade || atividade.length == 0"
+        [disabled]="!cursoRef.value || cursoRef.value.length == 0"
         textoBotao="Adicionar"
         phClass="ph ph-plus"
       ></app-secondary-button>
+
+      <!-- @if (campoInvalido(cursoRef)) {
+      <div class="error-message d-flex align-items-center">
+        <i class="ph ph-warning-circle"></i>
+        <p class="m-0">Curso é obrigatório</p>
+      </div>
+      } -->
     </div>
+
     <div class="atividade-group">
       <label class="form-label">Lista de atividades</label>
       <div class="item-list w-100">
-        @for (atividade of certificado.atividades; track $index) {
+        @for (curso of certificado.curso; track $index) {
         <div class="item">
-          <span>{{ atividade }}</span>
-          <div (click)="removerAtividade($index)" class="remove-btn">
+          <span>{{ curso }}</span>
+          <!-- <div (click)="removerAtividade($index)" class="remove-btn">
             <i class="ph-bold ph-x"></i>
-          </div>
+          </div> -->
         </div>
-        @if ($index + 1 != certificado.atividades.length) {
+        @if ($index + 1 != certificado.curso.length) {
         <hr />
         } }
       </div>
     </div>
-
+    <!-- Botão de gerar certificado -->
     <app-primary-button
       (click)="submit()"
       [disabled]="!formValido()"
