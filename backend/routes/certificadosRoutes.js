@@ -5,31 +5,65 @@ const router = express.Router();
 
 // Buscar todos
 router.get("/", async (req, res) => {
-  const certificados = await Certificado.find();
-  res.json(certificados);
+  try {
+    const certificados = await Certificado.find();
+    res.json(certificados);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ erro: "Erro ao buscar certificados", detalhe: err.message });
+  }
 });
 
 // Criar
 router.post("/", async (req, res) => {
-  const novo = new Certificado(req.body);
-  await novo.save();
-  res.json(novo);
+  try {
+    const novo = new Certificado(req.body);
+    await novo.save();
+    res.status(201).json(novo);
+  } catch (err) {
+    res
+      .status(400)
+      .json({ erro: "Erro ao criar certificado", detalhe: err.message });
+  }
 });
 
 // Atualizar
 router.put("/:id", async (req, res) => {
-  const atualizado = await Certificado.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
-  res.json(atualizado);
+  try {
+    const atualizado = await Certificado.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!atualizado) {
+      return res.status(404).json({ erro: "Certificado não encontrado" });
+    }
+
+    res.json(atualizado);
+  } catch (err) {
+    res
+      .status(400)
+      .json({ erro: "Erro ao atualizar certificado", detalhe: err.message });
+  }
 });
 
 // Deletar
 router.delete("/:id", async (req, res) => {
-  await Certificado.findByIdAndDelete(req.params.id);
-  res.json({ mensagem: "Certificado removido" });
+  try {
+    const deletado = await Certificado.findByIdAndDelete(req.params.id);
+
+    if (!deletado) {
+      return res.status(404).json({ erro: "Certificado não encontrado" });
+    }
+
+    res.json({ mensagem: "Certificado removido com sucesso" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ erro: "Erro ao deletar certificado", detalhe: err.message });
+  }
 });
 
 export default router;
