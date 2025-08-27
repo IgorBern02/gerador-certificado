@@ -6,6 +6,11 @@ import { CertificadosComponent } from './pages/certificados/certificados';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'certificados',
+    pathMatch: 'full',
+  },
+  {
+    path: 'certificados',
     component: CertificadosComponent,
   },
   {

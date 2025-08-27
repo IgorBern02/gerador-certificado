@@ -37,17 +37,12 @@
     <!-- Nome do curso -->
     <div class="mb-3 d-flex align-items-end custom-input-group">
       <div class="flex-grow-1 me-2">
-        <label
-          [ngClass]="{ 'text-danger-label': campoInvalido(cursoRef) }"
-          for="curso"
-          class="form-label"
-        >
-          Curso
-        </label>
+        <label for="curso" class="form-label"> Curso </label>
         <input
-          [(ngModel)]="certificado.curso"
+          [(ngModel)]="curso"
           name="curso"
           #cursoRef="ngModel"
+          maxlength="50"
           required
           id="curso"
           type="text"
@@ -76,15 +71,17 @@
         @for (curso of certificado.curso; track $index) {
         <div class="item">
           <span>{{ curso }}</span>
-          <!-- <div (click)="removerAtividade($index)" class="remove-btn">
+          <div (click)="removerAtividade($index)" class="remove-btn">
             <i class="ph-bold ph-x"></i>
-          </div> -->
+          </div>
         </div>
-        @if ($index + 1 != certificado.curso.length) {
+
+        @if ($index + 1 !== certificado.curso.length) {
         <hr />
         } }
       </div>
     </div>
+
     <!-- Botão de gerar certificado -->
     <app-primary-button
       (click)="submit()"

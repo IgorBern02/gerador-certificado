@@ -51,9 +51,15 @@ export class CertificadoForm {
   }
 
   adicionarAtividade() {
-    if (this.curso.trim().length === 0) return;
-    this.certificado.curso.push(this.curso.trim());
+    const atividade = this.curso.trim();
+    if (!atividade) return;
+
+    this.certificado.curso.push(atividade); // adiciona ao array
     this.curso = '';
+  }
+
+  removerAtividade(index: number) {
+    this.certificado.curso.splice(index, 1);
   }
 
   dataAtual() {
