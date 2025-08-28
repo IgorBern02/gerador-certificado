@@ -31,7 +31,7 @@
 
         <div>
           <p class="lista-atividade-titulo">Concluiu com sucesso as seguintes atividades:</p>
-          <p class="lista-atividade">{{ certificado.curso }}</p>
+          <p class="lista-atividade">{{ certificado.curso.join(', ') }}</p>
         </div>
       </div>
       <p class="data-emissao">Emitido em {{ certificado.data }}</p>

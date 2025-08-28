@@ -95,9 +95,7 @@
   color: #3b5ac2;
 }
 
-.lista-atividade {
-  width: 413.7px;
-}
+/*  */
 
 .lista-atividade-titulo {
   font-weight: 400;
@@ -110,6 +108,7 @@
 }
 
 .lista-atividade {
+  width: 413.7px;
   font-weight: 400;
   font-size: 14px;
   line-height: 160%;

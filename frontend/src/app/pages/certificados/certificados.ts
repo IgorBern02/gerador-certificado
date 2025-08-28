@@ -8,6 +8,7 @@ import { ItemCertificado } from '../../_components/item-certificado/item-certifi
   selector: 'app-certificados',
   templateUrl: './certificados.html',
   imports: [SecondaryButton, ItemCertificado],
+  styleUrls: ['./certificados.css'],
 })
 export class CertificadosComponent implements OnInit {
   certificados: Certificado[] = [];
