@@ -5,9 +5,17 @@
       <small class="small-date">Gerado em {{ dataEmissao }}</small>
     </div>
   </div>
-  <app-secondary-button textoBotao="ver" (click)="redirecionaCertificado()"></app-secondary-button>
-  <app-remove-button
+  <div class="d-flex align-items-center justify-content-between gap-4">
+    <app-secondary-button
+      textoBotao="ver"
+      (click)="redirecionaCertificado()"
+    ></app-secondary-button>
+    <!-- <app-remove-button
     routerLink="/certificados/novo"
     textoBotao="Excluir certificado"
-  ></app-remove-button>
+  ></app-remove-button> -->
+    <div class="remove-btn" (click)="remover()">
+      <i class="ph-bold ph-x"></i>
+    </div>
+  </div>
 </div>

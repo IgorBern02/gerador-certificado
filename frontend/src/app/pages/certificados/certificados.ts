@@ -12,31 +12,28 @@ import { ItemCertificado } from '../../_components/item-certificado/item-certifi
 export class CertificadosComponent implements OnInit {
   certificados: Certificado[] = [];
 
-  constructor(private service: CertificadoService) {}
+  constructor(private certificadoService: CertificadoService) {}
 
   ngOnInit() {
     this.carregarCertificados();
   }
 
   carregarCertificados() {
-    this.service.getCertificados().subscribe({
+    this.certificadoService.getCertificados().subscribe({
       next: (data) => (this.certificados = data),
       error: (err) => console.error('❌ Erro ao carregar certificados:', err),
     });
   }
 
-  deletar(id: string | undefined) {
-    if (!id) return;
-
-    const confirmacao = confirm('Tem certeza que deseja deletar este certificado?');
-    if (!confirmacao) return;
-
-    this.service.deletarCertificado(id).subscribe({
+  removerCertificado(id: string) {
+    this.certificadoService.deletarCertificado(id).subscribe({
       next: () => {
-        console.log('✅ Certificado deletado');
-        this.carregarCertificados();
+        console.log('✅ Certificado removido:', id);
+        this.certificados = this.certificados.filter((c) => c._id !== id);
       },
-      error: (err) => console.error('❌ Erro ao deletar certificado:', err),
+      error: (err) => {
+        console.error('❌ Erro ao remover certificado:', err);
+      },
     });
   }
 }

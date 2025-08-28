@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SecondaryButton } from '../../_components/secondary-button/secondary-button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CertificadoService } from '../../_services/certificado.service';
 import { Certificado } from '../../interfaces/certificado';
 import html2canvas from 'html2canvas';
@@ -17,7 +17,11 @@ export class CertificadoComponent implements OnInit {
 
   @ViewChild('certificadoContainer') certificadoElement!: ElementRef;
 
-  constructor(private certificadoService: CertificadoService, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private certificadoService: CertificadoService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -41,5 +45,9 @@ export class CertificadoComponent implements OnInit {
       link.download = 'certificado_' + this.certificado!.nome.replaceAll(' ', '_') + '.png';
       link.click();
     });
+  }
+
+  voltar() {
+    this.router.navigate(['/certificados']);
   }
 }

@@ -18,3 +18,15 @@
 .small-date {
   color: #1a2856;
 }
+
+.remove-btn i {
+  padding: 5.75px;
+  color: #e95f5f;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn i:hover {
+  background-color: #fceaea;
+}

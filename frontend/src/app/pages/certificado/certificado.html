@@ -1,6 +1,6 @@
 <div class="d-flex flex-column align-items-center">
   <div class="d-flex justify-content-between align-items-center menu-certificado w-100">
-    <div routerLink="/" class="d-flex align-items-center btn-voltar">
+    <div (click)="voltar()" class="d-flex align-items-center btn-voltar">
       <i class="ph ph-arrow-left"></i>
       <p class="m-0">Voltar</p>
     </div>
@@ -12,6 +12,7 @@
   </div>
 
   @if (certificado) {
+  <!-- <ng-container *ngIf="certificado"> -->
   <div class="certificado w-100 d-flex justify-content-center align-items-center">
     <img
       class="icone-medalha"
@@ -36,6 +37,6 @@
       <p class="data-emissao">Emitido em {{ certificado.data }}</p>
     </div>
   </div>
-
+  <!-- </ng-container> -->
   }
 </div>

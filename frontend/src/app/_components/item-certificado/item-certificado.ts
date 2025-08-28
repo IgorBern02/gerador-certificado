@@ -19,6 +19,13 @@ export class ItemCertificado {
   constructor(private router: Router) {}
 
   redirecionaCertificado() {
+    if (!this.id) return;
     this.router.navigate(['/certificados', this.id]);
+  }
+
+  remover() {
+    if (this.id) {
+      this.excluir.emit(this.id);
+    }
   }
 }
