@@ -6,12 +6,25 @@ const router = express.Router();
 // Buscar todos
 router.get("/", async (req, res) => {
   try {
-    const certificados = await Certificado.find();
-    res.json(certificados);
+    const certificado = await Certificado.find();
+    res.json(certificado);
   } catch (err) {
     res
       .status(500)
       .json({ erro: "Erro ao buscar certificados", detalhe: err.message });
+  }
+});
+
+// Buscar por ID
+router.get("/:id", async (req, res) => {
+  try {
+    const certificado = await Certificado.findById(req.params.id);
+    if (!certificado) {
+      return res.status(404).json({ error: "Certificado não encontrado" });
+    }
+    res.json(certificado);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
