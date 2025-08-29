@@ -1,4 +1,3 @@
 {
-  "distDir": "dist/gerador-certificado/browser",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
