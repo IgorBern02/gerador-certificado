@@ -7,7 +7,16 @@ import certificadosRoutes from "./routes/certificadosRoutes.js";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:10000", // Angular local
+      "https://gerador-certificado.onrender.com", // Angular no Vercel
+    ],
+    methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Conexão MongoDB
