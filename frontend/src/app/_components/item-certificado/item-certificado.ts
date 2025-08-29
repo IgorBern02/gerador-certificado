@@ -5,7 +5,7 @@ import { RemoveButton } from '../remove-button/remove-button';
 
 @Component({
   selector: 'app-item-certificado',
-  imports: [SecondaryButton, RemoveButton],
+  imports: [SecondaryButton],
   templateUrl: './item-certificado.html',
   styleUrl: './item-certificado.css',
 })

@@ -1,3 +1,4 @@
 {
+  "builds": [{ "src": "frontend/dist/gerador-certificado/**", "use": "@vercel/static" }],
   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
