@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Certificado } from '../interfaces/certificado';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CertificadoService {
-  private apiUrl = 'http://localhost:5000/certificados';
+  private apiUrl = `${environment.apiUrl}/certificados`;
 
   constructor(private http: HttpClient) {}
 
